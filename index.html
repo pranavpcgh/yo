@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImpactChain - Transparent Philanthropy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F7F7;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+        /* Graphic Elements & Parallax */
+        .graphic {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.7;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .graphic-1 { /* Circle */
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: -150px;
+            background: radial-gradient(circle, rgba(248, 180, 0, 0.15), transparent 60%);
+            border-radius: 50%;
+        }
+        .graphic-2 { /* Lines */
+            width: 200px;
+            height: 400px;
+            bottom: 15%;
+            right: -100px;
+            background-image: 
+                linear-gradient(to right, rgba(169, 248, 106, 0.3) 2px, transparent 2px),
+                linear-gradient(to right, rgba(169, 248, 106, 0.3) 4px, transparent 4px);
+            background-size: 20px 100%;
+        }
+         .graphic-3 { /* Gradient Blob */
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            right: -250px;
+            background: linear-gradient(135deg, rgba(248, 180, 0, 0.1), rgba(169, 248, 106, 0.1));
+            filter: blur(80px);
+            border-radius: 50%;
+        }
+        .neopop-card-light {
+            background: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+        }
+        .neopop-card-light:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: #F8B400;
+        }
+        .neopop-button-light {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+            font-weight: 700;
+            border-radius: 12px;
+            padding: 14px 36px;
+            transition: all 0.3s ease;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .neopop-button-light:hover {
+            background-color: #F8B400;
+            color: #1A1A1A;
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 25px rgba(248, 180, 0, 0.3);
+        }
+        .gradient-text-light {
+            background: linear-gradient(90deg, #F8B400, #5EBD3E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .table-cell-check {
+            color: #5EBD3E;
+            font-weight: bold;
+        }
+        .table-cell-cross {
+            color: #EF4444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/80">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-black tracking-tighter text-gray-900">
+                    <a href="#">IMPACT<span class="text-[#F8B400]">CHAIN</span></a>
+                </div>
+                <nav class="hidden lg:flex items-center space-x-6 font-medium text-gray-600 text-sm">
+                    <a href="#problem" class="hover:text-[#F8B400] transition-colors duration-300">Problem</a>
+                    <a href="#solution" class="hover:text-[#F8B400] transition-colors duration-300">Solution</a>
+                    <a href="#validation" class="hover:text-[#F8B400] transition-colors duration-300">Validation</a>
+                    <a href="#metrics" class="hover:text-[#F8B400] transition-colors duration-300">Market</a>
+                    <a href="#go-to-market" class="hover:text-[#F8B400] transition-colors duration-300">Go-to-Market</a>
+                    <a href="#competitors" class="hover:text-[#F8B400] transition-colors duration-300">Competition</a>
+                    <a href="#vision" class="hover:text-[#F8B400] transition-colors duration-300">Vision</a>
+                </nav>
+                <a href="#contact" class="neopop-button-light hidden md:block">Join Waitlist</a>
+                <button class="lg:hidden text-gray-900 p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative">
+        <!-- Graphic Elements -->
+        <div class="graphic graphic-1" data-parallax-speed="0.3"></div>
+        <div class="graphic graphic-2" data-parallax-speed="-0.2"></div>
+        <div class="graphic graphic-3" data-parallax-speed="0.1"></div>
+
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center text-center pt-24 pb-12">
+            <div class="container mx-auto px-6 z-10">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-tight animate-on-scroll">
+                    Charity with Clarity. <br> <span class="gradient-text-light">Impact You Can See.</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 mb-10 animate-on-scroll" style="transition-delay: 150ms;">
+                    ImpactChain uses blockchain to bring radical transparency to philanthropy. Finally, you can see exactly where your donation goes and measure the change it makes.
+                </p>
+                <div class="animate-on-scroll" style="transition-delay: 300ms;">
+                    <a href="#contact" class="neopop-button-light">Request Early Access</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Problem Section -->
+        <section id="problem" class="py-20 lg:py-32 relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter animate-on-scroll">The Problem: A Crisis of Trust</h2>
+                    <p class="text-lg text-gray-600 mt-3 max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 150ms;">The charitable sector, vital for global progress, is plagued by a painful and urgent problem: a profound lack of transparency. This "black box" of giving erodes donor trust, reduces donations, and limits the potential for good.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="neopop-card-light p-8 text-center animate-on-scroll">
+                        <h3 class="text-2xl font-bold mb-3">Opaque Fund Flow</h3>
+                        <p class="text-gray-600">Donors have no visibility into how their contributions are spent, leading to skepticism and disengagement.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 text-center animate-on-scroll" style="transition-delay: 150ms;">
+                        <h3 class="text-2xl font-bold mb-3">Inefficient Overheads</h3>
+                        <p class="text-gray-600">Up to 30% of donations can be consumed by administrative costs, reducing the funds that reach the actual cause.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 text-center animate-on-scroll" style="transition-delay: 300ms;">
+                        <h3 class="text-2xl font-bold mb-3">Unverified Impact</h3>
+                        <p class="text-gray-600">It's difficult to verify if projects achieve their stated goals, making it hard for donors to see the value of their support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Solution Section -->
+        <section id="solution" class="py-20 lg:py-32 bg-white relative z-10">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter animate-on-scroll">The Solution: Radical Transparency</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="animate-on-scroll">
+                        <p class="text-lg text-gray-600 mb-8">ImpactChain is a platform that leverages blockchain technology to create an immutable, transparent, and real-time ledger for every donation. We are not just an alternative; we are a fundamental upgrade to the infrastructure of giving.</p>
+                        <ul class="space-y-5 text-gray-700">
+                            <li class="flex items-start">
+                                <svg class="w-7 h-7 text-[#5EBD3E] mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><strong class="text-gray-900">Unique Value Proposition:</strong> We offer donors undeniable proof of impact, turning skepticism into confidence and one-time gifts into lifelong support.</span>
+                            </li>
+                             <li class="flex items-start">
+                                <svg class="w-7 h-7 text-[#5EBD3E] mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><strong class="text-gray-900">Cheaper & Faster:</strong> By automating fund release via smart contracts, we slash overhead costs and deliver funds to projects more quickly than traditional methods.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="neopop-card-light p-4 animate-on-scroll" style="transition-delay: 150ms;">
+                        <img src="https://placehold.co/600x450/ffffff/1A1A1A?text=Live+Impact+Dashboard" alt="Live Impact Dashboard" class="rounded-lg w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Validation & Traction Section -->
+        <section id="validation" class="py-20 lg:py-32 relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter animate-on-scroll">From Concept to Confirmation</h2>
+                    <p class="text-lg text-gray-600 mt-3 max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 150ms;">Our approach isn't just theoretical. We've proven our model in the field, gathering critical data and overwhelmingly positive feedback.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="neopop-card-light p-8 animate-on-scroll">
+                        <h3 class="text-2xl font-bold mb-3">Successful MVP Pilot</h3>
+                        <p class="text-gray-600 mb-4">We deployed a Minimum Viable Product (MVP) with a leading NGO in Bangalore, processing over 100+ successful, transparently-tracked micro-donations. The results were definitive.</p>
+                        <ul class="text-left space-y-2">
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span><strong>NGO Feedback:</strong> Praised the ease of reporting and the ability to build deeper trust with their supporters.</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span><strong>Donor Feedback:</strong> Reported a significant increase in confidence and a stronger connection to the cause.</li>
+                        </ul>
+                    </div>
+                    <div class="neopop-card-light p-8 animate-on-scroll" style="transition-delay: 150ms;">
+                        <h3 class="text-2xl font-bold mb-3">Extensive Market Discovery</h3>
+                        <p class="text-gray-600">Our team has gone beyond the pilot, conducting in-depth discovery interviews and feedback sessions with key stakeholders to ensure our platform addresses real-world needs.</p>
+                         <ul class="text-left space-y-2">
+                            <li><strong class="gradient-text-light text-xl">15+ NGOs</strong> consulted on feature development and operational needs.</li>
+                            <li><strong class="gradient-text-light text-xl">Dozens of Donors</strong> interviewed to refine the user experience and impact reporting.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Opportunity & Business Model Section -->
+        <section id="metrics" class="py-20 lg:py-32 bg-white relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter animate-on-scroll">A Massive, Underserved Market</h2>
+                    <p class="text-lg text-gray-600 mt-3 max-w-2xl mx-auto animate-on-scroll" style="transition-delay: 150ms;">We are tapping into the global charitable market by targeting donors who demand transparency.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="neopop-card-light p-8 text-left animate-on-scroll">
+                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider">TAM</h4>
+                        <p class="text-4xl lg:text-5xl font-black my-2 gradient-text-light">₹191T</p>
+                        <p class="text-gray-600 font-semibold">Total global annual charitable giving.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 text-left animate-on-scroll" style="transition-delay: 150ms;">
+                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider">SAM</h4>
+                        <p class="text-4xl lg:text-5xl font-black my-2 gradient-text-light">₹7T</p>
+                        <p class="text-gray-600 font-semibold">Online donors who prioritize transparency and technology.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 text-left animate-on-scroll" style="transition-delay: 300ms;">
+                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider">SOM</h4>
+                        <p class="text-4xl lg:text-5xl font-black my-2 gradient-text-light">₹830Cr</p>
+                        <p class="text-gray-600 font-semibold">Our 5-year target for annual donation volume.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-24 mb-16">
+                    <h3 class="text-3xl md:text-4xl font-black tracking-tighter animate-on-scroll">Our Diversified Business Model</h3>
+                     <p class="text-lg text-gray-600 mt-3 max-w-2xl mx-auto animate-on-scroll" style="transition-delay: 150ms;">We generate revenue through multiple streams, ensuring sustainability and alignment with our mission.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="neopop-card-light p-8 text-left animate-on-scroll">
+                        <h4 class="font-bold text-xl mb-2">Access Fee</h4>
+                        <p class="text-gray-600">A transparent flat fee on all donations processed, providing our core revenue.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 text-left animate-on-scroll" style="transition-delay: 150ms;">
+                        <h4 class="font-bold text-xl mb-2">Corporate CSR Suite</h4>
+                        <p class="text-gray-600">A SaaS subscription for corporates to manage, track, and report CSR funds with advanced analytics.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 text-left animate-on-scroll" style="transition-delay: 300ms;">
+                        <h4 class="font-bold text-xl mb-2">NGO Visibility</h4>
+                        <p class="text-gray-600">Optional flat-fee packages for NGOs seeking premium placement and enhanced visibility on the platform.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 text-left animate-on-scroll" style="transition-delay: 450ms;">
+                        <h4 class="font-bold text-xl mb-2">Value-Added Services</h4>
+                        <p class="text-gray-600">On-demand fees for services like on-ground verification and logistical support for high-value projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Go-to-Market Strategy Section -->
+        <section id="go-to-market" class="py-20 lg:py-32 relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter animate-on-scroll">Go-to-Market Strategy</h2>
+                    <p class="text-lg text-gray-600 mt-3 max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 150ms;">Our acquisition strategy targets three key pillars: trusted non-profits, socially-conscious corporations, and forward-thinking individual donors.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="neopop-card-light p-8 animate-on-scroll">
+                        <h3 class="text-2xl font-bold mb-3">Onboard Vetted NGOs</h3>
+                        <p class="text-gray-600">We will partner with small to mid-sized non-profits that are eager to showcase their efficiency and impact to a wider audience.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 animate-on-scroll" style="transition-delay: 150ms;">
+                        <h3 class="text-2xl font-bold mb-3">Corporate CSR Solutions</h3>
+                        <p class="text-gray-600">We streamline CSR for companies by providing a platform of verified NGOs and transparent impact reporting, removing the hassle of due diligence.</p>
+                    </div>
+                    <div class="neopop-card-light p-8 animate-on-scroll" style="transition-delay: 300ms;">
+                        <h3 class="text-2xl font-bold mb-3">Engage Individual Donors</h3>
+                        <p class="text-gray-600">Through content marketing and community building, we will attract donors who can share their "Impact Reports," creating a viral loop of trust.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Landscape Section -->
+        <section id="competitors" class="py-20 lg:py-32 bg-white relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter animate-on-scroll">Competitive Landscape</h2>
+                    <p class="text-lg text-gray-600 mt-3 max-w-2xl mx-auto animate-on-scroll" style="transition-delay: 150ms;">We differentiate ourselves by offering unparalleled transparency, which existing players cannot easily replicate.</p>
+                </div>
+                <div class="neopop-card-light p-2 sm:p-8 animate-on-scroll">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="p-4">Feature</th>
+                                    <th class="p-4 text-center">ImpactChain</th>
+                                    <th class="p-4 text-center">Traditional Charities</th>
+                                    <th class="p-4 text-center">Other Crypto Platforms</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="p-4 font-semibold">Real-Time Tracking</td>
+                                    <td class="p-4 text-center table-cell-check">✓</td>
+                                    <td class="p-4 text-center table-cell-cross">✗</td>
+                                    <td class="p-4 text-center table-cell-check">✓</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="p-4 font-semibold">Verified Impact Milestones</td>
+                                    <td class="p-4 text-center table-cell-check">✓</td>
+                                    <td class="p-4 text-center table-cell-cross">✗</td>
+                                    <td class="p-4 text-center table-cell-cross">✗</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="p-4 font-semibold">Low Overhead ( < 3%)</td>
+                                    <td class="p-4 text-center table-cell-check">✓</td>
+                                    <td class="p-4 text-center table-cell-cross">✗</td>
+                                    <td class="p-4 text-center table-cell-check">✓</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">User-Friendly Interface</td>
+                                    <td class="p-4 text-center table-cell-check">✓</td>
+                                    <td class="p-4 text-center table-cell-check">✓</td>
+                                    <td class="p-4 text-center table-cell-cross">✗</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision / Impact Section -->
+        <section id="vision" class="py-20 lg:py-32 relative z-10">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tighter animate-on-scroll">Our Vision: The Future of Giving</h2>
+                <p class="text-lg text-gray-600 mt-3 max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 150ms;">Our long-term vision is to become the underlying trust layer for global philanthropy. We believe that by fixing the transparency problem, we can unlock billions in dormant charitable capital and fundamentally increase the efficiency and impact of the entire sector. The time is now, as donor demand for accountability is at an all-time high and the technology has matured to make this possible at scale.</p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="py-20 lg:py-32 bg-white relative z-10">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 mb-5 animate-on-scroll">Join Us in Building the Future</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10 animate-on-scroll" style="transition-delay: 150ms;">We are seeking partners to help us build a new era of trust in giving. Join our waitlist for early access or contact us to discuss investment opportunities.</p>
+                    <form class="max-w-lg mx-auto flex flex-col sm:flex-row gap-4 animate-on-scroll" style="transition-delay: 300ms;">
+                        <input type="email" placeholder="your.email@example.com" class="w-full px-6 py-4 rounded-lg bg-gray-100 text-gray-900 border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#F8B400] transition-all duration-300" required>
+                        <button type="submit" class="neopop-button-light flex-shrink-0">Request Access</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="text-lg font-bold tracking-tighter">
+                    IMPACT<span class="text-[#F8B400]">CHAIN</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Medium</a>
+                </div>
+                <p class="text-gray-500 text-sm">&copy; 2024 ImpactChain. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // --- Parallax for Graphic Elements ---
+            const parallaxElements = document.querySelectorAll('.graphic');
+            window.addEventListener('scroll', () => {
+                let scrollPosition = window.pageYOffset;
+                parallaxElements.forEach(el => {
+                    const speed = el.dataset.parallaxSpeed;
+                    const yPos = -(scrollPosition * speed);
+                    el.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+
+            // --- Fade-in on Scroll Animation ---
+            const scrollObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                scrollObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
